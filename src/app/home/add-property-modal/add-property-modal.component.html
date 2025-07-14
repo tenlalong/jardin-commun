@@ -1,0 +1,63 @@
+<div class="modal" *ngIf="addPropertyModalState$ | async">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">✖</button>
+    <h2>Add New Property</h2>
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="imageUpload">Upload Images</label>
+        <input
+          id="imageUpload"
+          type="file"
+          accept="image/*"
+          multiple
+          (change)="onFileChange($event)"
+        />
+        <div class="image-preview" *ngIf="images.length">
+          <img *ngFor="let image of images" [src]="image" alt="Uploaded Image" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" formControlName="address" type="text" required />
+        <div *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched" class="error-message">
+          Address is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input id="city" formControlName="city" type="text" required />
+        <div *ngIf="propertyForm.get('city')?.invalid && propertyForm.get('city')?.touched" class="error-message">
+          City is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" formControlName="postalCode" type="text" required />
+        <div *ngIf="propertyForm.get('postalCode')?.invalid && propertyForm.get('postalCode')?.touched" class="error-message">
+          <div *ngIf="propertyForm.get('postalCode')?.errors?.['required']">Postal code is required.</div>
+          <div *ngIf="propertyForm.get('postalCode')?.errors?.['pattern']">Invalid postal code format (e.g., A1A 1A1).</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="search">Search Fruits/Vegetables</label>
+        <input id="search" formControlName="search" type="text" autocomplete="off" />
+        <ul class="autocomplete" *ngIf="filteredItems.length">
+          <li *ngFor="let item of filteredItems" (click)="selectItem(item)">
+            {{ item.name }} ({{ item.type }})
+          </li>
+        </ul>
+        <div class="tags" *ngIf="selectedItems.length">
+          <span
+            *ngFor="let item of selectedItems"
+            class="tag {{ item.type }}"
+            (click)="removeItem(item)"
+          >
+            {{ item.name }} ✕
+          </span>
+        </div>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <button type="submit" [disabled]="!propertyForm.valid">Add Property</button>
+    </form>
+  </div>
+</div>

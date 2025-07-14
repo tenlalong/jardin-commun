@@ -1,0 +1,56 @@
+<div class="modal" [ngClass]="{'modal--open': editModalOpen}">
+  <div class="modal__content">
+    <button class="modal__close" (click)="closeModal()">✖</button>
+    <h2>Edit Property</h2>
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" formControlName="address" placeholder="Enter address" />
+        <div *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched" class="error">
+          Address is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input id="city" formControlName="city" placeholder="Enter city" />
+        <div *ngIf="propertyForm.get('city')?.invalid && propertyForm.get('city')?.touched" class="error">
+          City is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" formControlName="postalCode" placeholder="Enter postal code" />
+        <div *ngIf="propertyForm.get('postalCode')?.invalid && propertyForm.get('postalCode')?.touched" class="error">
+          Valid postal code is required (e.g., A1A 1A1).
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Images</label>
+        <div class="image-preview">
+          <div *ngFor="let image of images; let i = index" class="image-item">
+            <img [src]="image" alt="Property image" />
+            <button type="button" (click)="removeImage(i)">X</button>
+          </div>
+        </div>
+        <input type="file" (change)="onFileChange($event)" multiple accept="image/*" />
+      </div>
+      <div class="form-group">
+        <label for="search">Add Fruits/Vegetables</label>
+        <input id="search" formControlName="search" placeholder="Search items" />
+        <ul class="item-list" *ngIf="filteredItems.length">
+          <li *ngFor="let item of filteredItems" (click)="selectItem(item)">
+            {{ item.name }} ({{ item.type | titlecase }})
+          </li>
+        </ul>
+        <div class="selected-items">
+          <span *ngFor="let item of selectedItems" class="tag">
+            {{ item.name }}
+            <button type="button" (click)="removeItem(item)">✖</button>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+      <button type="submit" [disabled]="propertyForm.invalid">Save Changes</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+<main>
+  <div class="home-container">
+    <div class="left-half">
+      <h2>Welcome to Jardin Commun</h2>
+      <p>Share and exchange home-grown fruits and vegetables with your community!</p>
+    </div>
+    <div class="right-half">
+      <div class="modal-triggers">
+        <h1>Jardin Commun</h1>
+        <button class="btn-open-modal" (click)="openLoginModal()">Login</button>
+        <button class="btn-open-modal" (click)="openRegistrationModal()">Register</button>
+        <button class="btn-open-modal" (click)="simulateLogin()">Simulate Login</button>
+      </div>
+    </div>
+  </div>
+  <app-registration></app-registration>
+  <app-login></app-login>
+</main>

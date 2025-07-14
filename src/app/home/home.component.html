@@ -1,0 +1,63 @@
+<div class="home-container">
+  <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+  <app-sidebar [isOpen]="isSidebarOpen" (toggle)="toggleSidebar()"></app-sidebar>
+  <div class="content-wrapper" [ngClass]="{'content--sidebar-open': isSidebarOpen}">
+    <main class="property-section property-section--all">
+      <div class="container">
+        <h2 class="section-title">All Properties</h2>
+        <div class="property-carousel">
+          <button class="nav-button nav-button--left" (click)="scrollLeft('all')">❮</button>
+          <div class="property-grid property-grid--all" #allPropertiesGrid>
+            <div class="property-card" *ngFor="let property of allProperties">
+              <div class="property-card__image">
+                <img [src]="property.images[0] || 'https://via.placeholder.com/400x250?text=No+Image'" alt="Property in {{ property.city }}" />
+              </div>
+              <div class="property-card__content">
+                <h3 class="property-card__title">{{ property.city }}</h3>
+                <p class="property-card__address">{{ property.address }}</p>
+                <p class="property-card__postal">{{ property.postalCode }}</p>
+                <div class="property-card__tags">
+                  <span *ngFor="let fruit of property.fruits" class="tag tag--fruit">{{ fruit }}</span>
+                  <span *ngFor="let vegetable of property.vegetables" class="tag tag--vegetable">{{ vegetable }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="nav-button nav-button--right" (click)="scrollRight('all')">❯</button>
+        </div>
+        <div *ngIf="allProperties.length === 0" class="no-properties">
+          <p>No properties available in the database.</p>
+        </div>
+      </div>
+    </main>
+    <section class="property-section property-section--my">
+      <div class="container">
+        <h2 class="section-title">My Properties</h2>
+        <div class="property-carousel">
+          <button class="nav-button nav-button--left" (click)="scrollLeft('my')">❮</button>
+          <div class="property-grid property-grid--my" #myPropertiesGrid>
+            <div class="property-card" *ngFor="let property of properties">
+              <div class="property-card__image">
+                <img [src]="property.images[0] || 'https://via.placeholder.com/400x250?text=No+Image'" alt="Property in {{ property.city }}" />
+              </div>
+              <div class="property-card__content">
+                <h3 class="property-card__title">{{ property.city }}</h3>
+                <p class="property-card__address">{{ property.address }}</p>
+                <p class="property-card__postal">{{ property.postalCode }}</p>
+                <div class="property-card__tags">
+                  <span *ngFor="let fruit of property.fruits" class="tag tag--fruit">{{ fruit }}</span>
+                  <span *ngFor="let vegetable of property.vegetables" class="tag tag--vegetable">{{ vegetable }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="nav-button nav-button--right" (click)="scrollRight('my')">❯</button>
+        </div>
+        <div *ngIf="properties.length === 0" class="no-properties">
+          <p>You haven't added any properties yet.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <app-add-property-modal></app-add-property-modal>
+</div>

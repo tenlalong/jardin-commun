@@ -1,0 +1,27 @@
+<div class="modify-properties">
+  <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+  <app-sidebar [isOpen]="isSidebarOpen" (toggle)="toggleSidebar()"></app-sidebar>
+  <div class="content-wrapper" [ngClass]="{'content--sidebar-open': isSidebarOpen}">
+    <button class="back-button" (click)="goBack()">Back to Home</button>
+    <h2>Modify Properties</h2>
+    <div class="property-list">
+      <div *ngFor="let property of properties" class="property-card">
+        <div class="property-card__image">
+          <img [src]="property.images[0] || 'https://via.placeholder.com/400x250?text=No+Image'" alt="Property in {{ property.city }}" />
+        </div>
+        <div class="property-card__content">
+          <h3 class="property-card__title">{{ property.city }}</h3>
+          <p class="property-card__address">{{ property.address }}</p>
+          <p class="property-card__postal">{{ property.postalCode }}</p>
+          <div class="property-card__tags">
+            <span *ngFor="let fruit of property.fruits" class="tag tag--fruit">{{ fruit }}</span>
+            <span *ngFor="let vegetable of property.vegetables" class="tag tag--vegetable">{{ vegetable }}</span>
+          </div>
+          <button (click)="editProperty(property)">Edit</button>
+        </div>
+      </div>
+      <p *ngIf="properties.length === 0">No properties found.</p>
+    </div>
+    <app-edit-property-modal></app-edit-property-modal>
+  </div>
+</div>

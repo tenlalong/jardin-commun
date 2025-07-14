@@ -1,0 +1,117 @@
+.modify-properties {
+  padding: 20px;
+}
+
+h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+}
+
+.property-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.property-card {
+  flex: 0 0 320px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.property-card__image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.property-card__content {
+  padding: 1.25rem;
+}
+
+.property-card__title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+}
+
+.property-card__address,
+.property-card__postal {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.property-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.tag--fruit {
+  background: #ff6347;
+}
+
+.tag--vegetable {
+  background: #2e7d32;
+}
+
+button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #4caf50;
+}
+
+.back-button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.back-button:hover {
+  background-color: #4caf50;
+}
+
+.content-wrapper {
+  margin-top: 4rem; /* Space for fixed header */
+  padding: 1.5rem;
+  transition: margin-left 0.3s ease;
+}
+
+.content--sidebar-open {
+  margin-left: 300px;
+}

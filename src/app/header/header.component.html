@@ -1,0 +1,10 @@
+<header class="header" [ngStyle]="{'padding-left': isSidebarOpen ? '316px' : '2rem'}">
+  <div class="header__left">
+    <button class="menu-toggle" aria-label="Toggle navigation" (click)="onToggleSidebar()">☰</button>
+    <h1 class="header__brand">Jardin Commun</h1>
+  </div>
+  <div class="header__right">
+    <span class="header__user">Hi {{ userFirstName }}</span>
+    <button class="header__settings" aria-label="User settings">⚙️</button>
+  </div>
+</header>

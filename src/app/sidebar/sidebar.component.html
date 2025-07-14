@@ -1,0 +1,8 @@
+<nav class="sidebar" [ngClass]="{'sidebar--open': isOpen}">
+  <button class="sidebar__close" aria-label="Close sidebar" (click)="onToggle()">✖</button>
+  <ul class="sidebar__menu">
+    <li><button class="sidebar__item" (click)="goHome()">Home</button></li>
+    <li><button class="sidebar__item" (click)="openAddPropertyModal()">Add Property</button></li>
+    <li><button class="sidebar__item" (click)="openModifyProperties()">Modify Properties</button></li>
+  </ul>
+</nav>
