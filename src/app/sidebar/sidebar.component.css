@@ -1,18 +1,22 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -300px;
+  left: -350px; /* Move further off-screen to account for shadow */
   width: 300px;
   height: 100%;
   background: #ffffff;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  transition: left 0.3s ease;
+  box-shadow: none; /* No shadow when closed */
+  transition: left 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0.3s; /* Delay visibility change */
   z-index: 1000;
   padding: 5rem 1.5rem 1.5rem;
+  visibility: hidden; /* Completely hide when closed */
 }
 
 .sidebar--open {
   left: 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1); /* Shadow only when open */
+  visibility: visible; /* Show when open */
+  transition: left 0.3s ease, box-shadow 0.3s ease, visibility 0s linear 0s; /* Immediate visibility */
 }
 
 .sidebar__close {
